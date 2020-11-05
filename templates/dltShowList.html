@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大乐透开奖列表</title>
+</head>
+<script>
+    function qry2() {
+        document.form1.operatorType.value = 1;
+        document.form1.submit();
+    }
+</script>
+<body>
+
+    <form name="form1" action="/choicelDlt" method="post">
+        前区：<textarea name="front"></textarea>
+        后区：<textarea name="after"></textarea>
+        期号：<input type="text" name="no">
+        <input type="hidden" name="operatorType" value="0">
+        <input type="submit" name="qry1" value="中奖查询" >
+        <button type="button" onclick="qry2()">购买金额查询</button>
+    </form>
+    <table width="50%" border="1" align="middle">
+        <thead>
+        <th>期号</th>
+        <th>前区</th>
+        <th>后区</th>
+        </thead>
+        <tbody align="middle">
+            <meta charset="UTF-8">
+            {% for line in lines %}
+                <tr >
+                    <td>{{  line.split(',')[0] }}</td>
+                    <td>{{  line.split(',')[1] }}</td>
+                    <td>{{  line.split(',')[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

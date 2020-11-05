@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双色球开奖列表</title>
+    <style>
+        .line{
+            display: inline-block;
+            height: 1px;
+            width: 100%;
+            background-color: #00ccff;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<script>
+    function qry2() {
+        document.form1.operatorType.value = 1;
+        document.form1.submit();
+    }
+</script>
+<body>
+    <form name="form1" action="/choicelSsq" method="post">
+        红球：<textarea name="red" rows="3" ></textarea>
+        蓝球：<textarea name="blue" rows="3" ></textarea>
+        期号：<input type="text" name="no">
+        <input type="hidden" name="operatorType" value="0">
+        <input type="submit" name="qry1" value="中奖查询" >
+        <button type="button" onclick="qry2()">购买金额查询</button>
+    </form>
+    <table width="50%" border="1" align="middle">
+        <thead>
+        <th>期号</th>
+        <th>红球</th>
+        <th>蓝球</th>
+        </thead>
+        <tbody align="middle">
+            <meta charset="UTF-8">
+            {% for line in lines %}
+                <tr >
+                    <td>{{  line.split(',')[0] }}</td>
+                    <td>{{  line.split(',')[1] }}</td>
+                    <td>{{  line.split(',')[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
